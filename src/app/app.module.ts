@@ -41,8 +41,8 @@ import {TabComponent} from './tabs/tab.component';
   providers: [
       LocationService,
       WeatherService,
-      { provide: 'CurrentConditionsCache', useFactory: () => (new CacheService<CurrentConditions>(60*1000)) },
-      { provide: 'ForecastCache', useFactory: () => (new CacheService<Forecast>(60*1000)) },
+      { provide: 'CurrentConditionsCache', useFactory: () => (new CacheService<CurrentConditions>(2*60*60*1000)) },
+      { provide: 'ForecastCache', useFactory: () => (new CacheService<Forecast>(2*60*60*1000)) },
   ],
   bootstrap: [AppComponent]
 })
