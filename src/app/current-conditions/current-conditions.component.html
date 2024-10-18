@@ -1,6 +1,6 @@
-<app-tabs>
-    <ng-container *ngFor="let location of currentConditionsByZip()">
-        <app-tab caption="{{location.data.name}} ({{location.zip}})" (tabClosed)="locationService.removeLocation(location.zip)">
+<app-tabs [(selectedTab)]="selectedTab">
+    <ng-container *ngFor="let location of currentConditionsByZip(); index as i">
+        <app-tab caption="{{location.data.name}} ({{location.zip}})" (tabClosed)="locationService.removeLocation(location.zip)" [selected]="i === selectedTab">
             <div class="well flex" (click)="showForecast(location.zip)">
                 <div>
                     <h3>{{location.data.name}} ({{location.zip}})</h3>

@@ -25,12 +25,12 @@ export class WeatherService {
 
       const currentConditions$: Observable<ConditionsAndZip[]> =
           this.locationService.getLocations().pipe(
-              switchMap(locations => this.getConditionsAndZips(locations))
+              switchMap(locations => this.fetchConditionsAndZips(locations))
           );
       this.currentConditions = toSignal(currentConditions$, { initialValue: [] });
   }
 
-  private getConditionsAndZips(locations : string[]): Observable<ConditionsAndZip[]> {
+  private fetchConditionsAndZips(locations : string[]): Observable<ConditionsAndZip[]> {
     if (locations.length > 0) {
       return forkJoin(locations.map(zipcode =>
           this.fetchCurrentConditions(zipcode).pipe(map(cc => ({zip: zipcode, data: cc})))

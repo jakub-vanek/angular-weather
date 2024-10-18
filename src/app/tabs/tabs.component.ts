@@ -1,4 +1,4 @@
-import {Component, ContentChildren, QueryList} from '@angular/core';
+import {Component, ContentChildren, EventEmitter, Input, Output, QueryList} from '@angular/core';
 import {TabComponent} from './tab.component';
 
 @Component({
@@ -7,6 +7,9 @@ import {TabComponent} from './tab.component';
     styleUrls: ['./tabs.component.css']
 })
 export class TabsComponent {
+
+    @Input() selectedTab: number;
+    @Output() selectedTabChange = new EventEmitter<number>()
 
     @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
@@ -18,7 +21,7 @@ export class TabsComponent {
     }
 
     selectTab(i: number): void {
-        this.tabs.map(x => x.selected = false);
-        this.tabs.get(i).selected = true;
+        console.log('SELECT TAB', i);
+        this.selectedTabChange.emit(i);
     }
 }
