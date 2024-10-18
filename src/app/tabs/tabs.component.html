@@ -1,0 +1,10 @@
+<div class="tabs">
+    <div class="tabs-header">
+        <div *ngFor="let tab of tabs; index as i" (click)="selectTab(i)" [class.selected]="tab.selected">
+            {{tab.caption}} <span class="close" (click)="closeTab(tab, i); $event.stopPropagation()">x</span>
+        </div>
+    </div>
+    <div class="tabs-content">
+        <ng-content></ng-content>
+    </div>
+</div>
